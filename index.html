@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquetta</title>
+<meta name="description" content="A free-form workspace for Windows: study references, review video and GIFs frame by frame, and try AI variations side by side. Works as a reference board too. Coming soon.">
+<meta property="og:title" content="Maquetta — Stop toggling. Look across.">
+<meta property="og:description" content="A free-form workspace for anything that outgrows a single frame. Coming soon for Windows.">
+<meta property="og:image" content="https://maquetta.app/icon.png">
+<meta property="og:url" content="https://maquetta.app/">
+<meta name="theme-color" content="#121314">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+  /* Палитра — из приложения (Maquetta/src/style.css): почти чёрный корпус,
+     акцент — светлое дерево знака. */
+  :root {
+    color-scheme: dark;
+    --bg: #121314;
+    --surface-raised: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #f7f8f8;
+    --text-secondary: #b4b9c2;
+    --text-muted: #8a8f98;
+    --accent: #efc580;
+    --accent-hover: #fbd69c;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .brand img { width: 48px; height: 48px; }
+  .brand span { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  h1 {
+    margin: 0;
+    max-width: 14em;
+    font-size: clamp(34px, 7vw, 60px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  /* Фраза заголовка не рвётся посередине: переносится только между ними. */
+  h1 .line { display: inline-block; }
+  .lead {
+    max-width: 30em;
+    margin: 16px 0 0;
+    font-size: clamp(17px, 3.5vw, 21px);
+    color: var(--accent);
+    text-wrap: balance;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 960px;
+    margin: 48px 0 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+  }
+  .pillars li {
+    padding: 20px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .pillars h2 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .pillars p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+  @media (max-width: 720px) {
+    .pillars { grid-template-columns: 1fr; }
+  }
+  .status {
+    margin: 40px 0 0;
+    padding: 6px 14px;
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: 999px;
+    font-size: 14px;
+  }
+  footer {
+    padding: 16px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  footer button {
+    font: inherit;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    cursor: pointer;
+  }
+  footer button[aria-pressed="true"] { color: var(--accent); }
+  footer button:hover { color: var(--accent-hover); }
+  [lang="ru"] .en, [lang="en"] .ru { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">
+    <img src="icon.png" alt="" width="48" height="48">
+    <span>Maquetta</span>
+  </div>
+  <h1>
+    <span class="en"><span class="line">Stop toggling.</span> <span class="line">Look across.</span></span>
+    <span class="ru"><span class="line">Хватит переключаться.</span> <span class="line">Всё перед глазами.</span></span>
+  </h1>
+  <p class="lead">
+    <span class="en">A free-form workspace for anything that outgrows a single frame.</span>
+    <span class="ru">Свободное пространство для работы, которой тесно в одном кадре.</span>
+  </p>
+  <ul class="pillars">
+    <li>
+      <h2><span class="en">Study</span><span class="ru">Разбор</span></h2>
+      <p>
+        <span class="en">Squint, notan, palette and colour wheel across hundreds
+          of references at once — right on the board, the files stay untouched.</span>
+        <span class="ru">Прищур, силуэт, палитра и цветовой круг — сразу на
+          сотнях референсов, прямо на доске. Файлы остаются нетронутыми.</span>
+      </p>
+    </li>
+    <li>
+      <h2><span class="en">Review</span><span class="ru">Ревью</span></h2>
+      <p>
+        <span class="en">Step through video and GIFs frame by frame, draw over
+          them, onion-skin, and play any clips in sync, side by side.</span>
+        <span class="ru">Видео и gif покадрово: рисуйте поверх, включайте
+          онион-скин, запускайте любые клипы синхронно — рядом друг с другом.</span>
+      </p>
+    </li>
+    <li>
+      <h2><span class="en">Vary</span><span class="ru">Вариации</span></h2>
+      <p>
+        <span class="en">Remove a background, inpaint, upscale, generate — each
+          result lands beside its original, nothing is overwritten.</span>
+        <span class="ru">Убирайте фон, дорисовывайте, увеличивайте, генерируйте —
+          каждый результат ложится рядом с оригиналом, ничего не перезаписывается.</span>
+      </p>
+    </li>
+  </ul>
+  <p class="status">
+    <span class="en">Coming soon for Windows</span>
+    <span class="ru">Скоро для Windows</span>
+  </p>
+</main>
+<footer>
+  <button type="button" data-lang="en">English</button> ·
+  <button type="button" data-lang="ru">Русский</button>
+</footer>
+<script>
+  // Язык: выбор из подвала, иначе язык браузера. Без JS страница — на английском.
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll("footer button");
+    function apply(lang) {
+      root.lang = lang;
+      buttons.forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+      });
+    }
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    apply(saved || (/^ru\b/i.test(navigator.language || "") ? "ru" : "en"));
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        apply(b.dataset.lang);
+        try { localStorage.setItem("lang", b.dataset.lang); } catch (e) {}
+      });
+    });
+  })();
+</script>
+</body>
+</html>
