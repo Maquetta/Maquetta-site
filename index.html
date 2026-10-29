@@ -96,6 +96,53 @@
   @media (max-width: 720px) {
     .pillars { grid-template-columns: 1fr; }
   }
+  /* Форматы — по группам диалога импорта приложения (Maquetta/src/fileKinds.ts,
+     IMPORT_DIALOG_GROUPS): правится там — правится здесь. */
+  .formats {
+    width: 100%;
+    max-width: 960px;
+    margin: 56px 0 0;
+    text-align: left;
+  }
+  .formats h2 {
+    margin: 0 0 4px;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .formats .sub {
+    margin: 0 0 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+    text-align: center;
+  }
+  .formats dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px 24px;
+    margin: 0;
+    padding: 20px;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .formats dt { color: var(--text-secondary); font-size: 15px; }
+  .formats dd {
+    margin: 0;
+    font-family: Consolas, "Cascadia Mono", ui-monospace, monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .formats dd small {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  @media (max-width: 720px) {
+    .formats dl { grid-template-columns: 1fr; gap: 2px; }
+    .formats dd { margin-bottom: 10px; }
+  }
   .status {
     margin: 40px 0 0;
     padding: 6px 14px;
@@ -119,6 +166,13 @@
   }
   footer button[aria-pressed="true"] { color: var(--accent); }
   footer button:hover { color: var(--accent-hover); }
+  /* Ссылка на поддержку — отдельно от выбора языка, под статусом. */
+  .support-link {
+    margin: 16px 0 0;
+    font-size: 14px;
+  }
+  .support-link a { color: var(--text-muted); text-decoration: none; }
+  .support-link a:hover { color: var(--accent-hover); }
   [lang="ru"] .en, [lang="en"] .ru { display: none; }
 </style>
 </head>
@@ -165,9 +219,35 @@
       </p>
     </li>
   </ul>
+  <section class="formats">
+    <h2><span class="en">Supported formats</span><span class="ru">Поддерживаемые форматы</span></h2>
+    <p class="sub">
+      <span class="en">Drop files onto the board, paste them, or pick them in the import dialog.</span>
+      <span class="ru">Перетащите файлы на доску, вставьте их или выберите в диалоге импорта.</span>
+    </p>
+    <dl>
+      <dt><span class="en">Images</span><span class="ru">Изображения</span></dt>
+      <dd>JPG · PNG · WebP · AVIF · JPEG XL · HEIC · TIFF · BMP · SVG
+        <small><span class="en">— HEIC through the Windows HEIF codec</span><span class="ru">— HEIC через кодек HEIF в Windows</span></small></dd>
+      <dt><span class="en">Editor files</span><span class="ru">Файлы редакторов</span></dt>
+      <dd>PSD · PSB · KRA · ORA · CLIP
+        <small><span class="en">— as a flat picture</span><span class="ru">— плоской картинкой</span></small></dd>
+      <dt>PDF</dt>
+      <dd>PDF · AI
+        <small><span class="en">— pick pages or the pictures on them; AI — one page per artboard</span><span class="ru">— страницы или картинки с них на выбор; AI — по странице на монтажную область</span></small></dd>
+      <dt><span class="en">Video and animation</span><span class="ru">Видео и анимация</span></dt>
+      <dd>MP4 · WebM · MOV · MKV · AVI · GIF · APNG
+        <small><span class="en">— animated WebP and AVIF too; other video formats through the free ffmpeg add-on</span><span class="ru">— и анимированные WebP и AVIF; остальные видеоформаты — через бесплатное дополнение ffmpeg</span></small></dd>
+      <dt><span class="en">Textures and HDR</span><span class="ru">Текстуры и HDR</span></dt>
+      <dd>EXR · HDR · TGA · QOI · ICO · PNM</dd>
+    </dl>
+  </section>
   <p class="status">
     <span class="en">Coming soon for Windows</span>
     <span class="ru">Скоро для Windows</span>
+  </p>
+  <p class="support-link">
+    <a href="support/"><span class="en">Support the project →</span><span class="ru">Поддержать проект →</span></a>
   </p>
 </main>
 <footer>
@@ -178,7 +258,7 @@
   // Язык: выбор из подвала, иначе язык браузера. Без JS страница — на английском.
   (function () {
     var root = document.documentElement;
-    var buttons = document.querySelectorAll("footer button");
+    var buttons = document.querySelectorAll("footer button[data-lang]");
     function apply(lang) {
       root.lang = lang;
       buttons.forEach(function (b) {
